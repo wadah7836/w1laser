@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang=""><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>PyWebIO Application</title>
+    <meta name="description" content="None">
+    <link rel="icon" type="image/png" sizes="32x32" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAwklEQVQ4T63TvU5CQRCG4WcwMfEuqOgNtQ2Nd4CxV2LHtVhJ0N7AHdjQUBtrrLwLA4ks2Rx+/Qucw3Y78807M7sz4ft5dq6mI7RQX7o/JCNzfdfetkNifRk6k9wLN9jYdxMkyZPQ1faZXYUwB/OCix8V/W4Y4zJDCsBAX7jdM7iQJY+udELu+cTrP2X/xU2+NMPAg3B3UPaVOOmFoQkapQC8Z8AUpyUBs6MAKrZQ+RErf2PlQTrKKK8gpZdpewgOXOcFTTxEjYwMoIkAAAAASUVORK5CYII=" id="favicon32">
+    <link rel="icon" type="image/png" sizes="16x16" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAABmUlEQVRYR82XK0wDQRCGv21TUUUJGBwGDBggGCSGBIcAWnBAgsNAgkKhSMDgCA8HtEXgSDBIDC9DDRgcpoSiKo52yea49DiutMttsz27M/98N7s7OyNo9tujgxSTwDiCIaAXSH27l4AXJA/AFSUuWOajGWnR0ChLP3HWkWSAZEN716CM4JQKW6R5+sunPkCeJJJNBCtAosnAQTMHyS6CDWYoh2mEAxzTR4JzYOCfgYNuBRymmOc5uPAbIMswMS6BbkPBPZkiVSZIc+/X/Qng/vl1C4LXIBzG/JmoAag9hxuDaa+XwAIw6p2JGkCObQSrhtMeLifZYZY1tegCqKsW4zHCadfldqgyqK6oC3DGIZIFXZVI9oIjplkUqArXyatGkYkU1+dc5p0eQY4MghNTqlo6kjkFsI9gScvRlLHkQJDnFhgxpampc6cAikCXpqMp8zcF8AnETSlq6lTaAsD6Flg+hNavofVCZL0UW3+M2uI5VhBWGxIFYL0lUxBWm1KviFttyz0Iq4OJB2F1NPO/qdaG0+DD3qLx/AuMVJFhmC8dSgAAAABJRU5ErkJggg==" id="favicon16">
+    <link rel="apple-touch-icon" href="https://cdn.jsdelivr.net/gh/wang0618/PyWebIO-assets@v1.8.3/image/apple-touch-icon.png">
+    <link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%20null%2C%20%22description%22%3A%20null%2C%20%22start_url%22%3A%20%22.%22%2C%20%22display%22%3A%20%22standalone%22%2C%20%22theme_color%22%3A%20%22white%22%2C%20%22background_color%22%3A%20%22white%22%2C%20%22icons%22%3A%20%5B%7B%22src%22%3A%20%22https%3A//cdn.jsdelivr.net/gh/wang0618/PyWebIO-assets%40v1.8.3/image/apple-touch-icon.png%22%2C%20%22type%22%3A%20%22image/png%22%2C%20%22sizes%22%3A%20%22180x180%22%7D%5D%7D">
+    <link rel="stylesheet" href="index_files/markdown.min.css">
+    <link rel="stylesheet" href="index_files/codemirror.min.css">
+    <link rel="stylesheet" href="index_files/toastify.min.css">
+    <link rel="stylesheet" href="index_files/default.min.css">
+    <link rel="stylesheet" href="index_files/bootstrap-select.min.css">
+    <link rel="stylesheet" href="index_files/app.css">
+    
+    
+</head>
+<body class="webio-theme-default">
+<div class="pywebio">
+    <div class="container no-fix-height" id="output-container">
+        <div class="markdown-body" id="markdown-body">
+            <div class="text-center" id="pywebio-loading" style="position: fixed; top: 40%; left: 0px; right: 0px; display: none;">
+                <div class="spinner-grow text-info" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+
+            <div id="pywebio-scope-ROOT"><center style="background-color: rgb(37, 49, 109); color: gold; padding: 25px;"><h3> مركز التطبيقات الصناعية وتكنولوجيا المواد</h3></center><p style="text-align: center; font-weight: bold;">تطبيق ويب للمساعدة العلمية للباحثين</p><center style=""> <img src="index_files/images.jpg" width=""> </center></div>
+        </div>
+        <div id="end-space" style="height: 0px;"></div>
+
+    </div>
+
+    <div id="input-container" style="height: unset;">
+        <div id="input-cards" class="container"><div class="card" style="height: unset; width: unset;">
+                <h5 class="card-header">الموقع برمجة المهندس وضاح حاتم واشراف د. بشرى رزوقي</h5>
+                <div class="card-body">
+                    <form>
+                        <div class="input-container"><div class="form-group">
+    <label for="student-4948">اسم الباحث</label>
+     
+        <input type="text" id="student-4948" aria-describedby="student-4948_action_btn" list="student-4948-list" class="form-control" name="student" auto_focus="true">
+        <datalist id="student-4948-list">
+            
+        </datalist>
+        <div class="invalid-feedback"></div>
+        <div class="valid-feedback"></div>
+     
+    <small id="student-4948_help" class="form-text text-muted"></small>
+</div><div class="form-group">
+    <label for="country-831">عنوان الباحث</label>
+     
+        <input type="text" id="country-831" aria-describedby="country-831_action_btn" list="country-831-list" class="form-control" name="country">
+        <datalist id="country-831-list">
+            
+        </datalist>
+        <div class="invalid-feedback"></div>
+        <div class="valid-feedback"></div>
+     
+    <small id="country-831_help" class="form-text text-muted"></small>
+</div><div class="form-group">
+    <label for="email-8913">البريد الالكتروني</label>
+     
+        <input type="text" id="email-8913" aria-describedby="email-8913_action_btn" list="email-8913-list" class="form-control" name="email">
+        <datalist id="email-8913-list">
+            
+        </datalist>
+        <div class="invalid-feedback"></div>
+        <div class="valid-feedback"></div>
+     
+    <small id="email-8913_help" class="form-text text-muted"></small>
+</div><div class="form-group">
+    <label for="phone-8597">رقم الهاتف</label>
+     
+        <input type="number" id="phone-8597" aria-describedby="phone-8597_action_btn" list="phone-8597-list" class="form-control" name="phone">
+        <datalist id="phone-8597-list">
+            
+        </datalist>
+        <div class="invalid-feedback"></div>
+        <div class="valid-feedback"></div>
+     
+    <small id="phone-8597_help" class="form-text text-muted"></small>
+</div><div class="form-group">
+    <label>مؤهلات الطالب</label> 
+    
+<div class="form-check ">
+    <label class="form-check-label" for="certi-3962-0">
+        <input type="radio" id="certi-3962-0" name="certi" class="form-check-input" value="&quot;word&quot;" idx="0">
+        word
+    </label>
+</div>
+<div class="form-check ">
+    <label class="form-check-label" for="certi-3962-1">
+        <input type="radio" id="certi-3962-1" name="certi" class="form-check-input" value="&quot;excel&quot;" idx="1">
+        excel
+    </label>
+</div>
+<div class="form-check ">
+    <label class="form-check-label" for="certi-3962-2">
+        <input type="radio" id="certi-3962-2" name="certi" class="form-check-input" value="&quot;power point&quot;" idx="2">
+        power point
+    </label>
+</div>
+
+    <div class="invalid-feedback"></div> 
+    <div class="valid-feedback"></div>
+    <small id="_help" class="form-text text-muted"></small>
+</div><div class="form-group">
+    <label>اتقان اللغات</label><br> 
+    
+<div class="form-check form-check-inline">
+    <label class="form-check-label" for="lang-3630-0">
+        <input type="checkbox" id="lang-3630-0" name="lang" class="form-check-input" value="&quot;Arabic&quot;" idx="0">
+        Arabic
+    </label>
+</div>
+<div class="form-check form-check-inline">
+    <label class="form-check-label" for="lang-3630-1">
+        <input type="checkbox" id="lang-3630-1" name="lang" class="form-check-input" value="&quot;English&quot;" idx="1">
+        English
+    </label>
+</div>
+<div class="form-check form-check-inline">
+    <label class="form-check-label" for="lang-3630-2">
+        <input type="checkbox" id="lang-3630-2" name="lang" class="form-check-input" value="&quot;France&quot;" idx="2">
+        France
+    </label>
+</div>
+
+    <div class="invalid-feedback"></div> 
+    <div class="valid-feedback"></div>
+    <small id="_help" class="form-text text-muted"></small>
+</div></div>
+                        <div class="ws-form-submit-btns">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="reset" class="btn btn-warning">Reset</button>
+                            
+                        </div>
+                    </form>
+                </div>
+            </div></div>
+    </div>
+</div>
+
+<script src="index_files/mustache.min.js"></script>  <!--template system-->
+<script src="index_files/codemirror.min.js"></script>  <!--code textarea editor-->
+<script src="index_files/addons.js"></script> <!--codemirror addons: matchbrackets, python mode, active line, auto refresh, mode/meta and loadmode -->
+<script src="index_files/prism.min.js"></script>  <!-- markdown code highlight -->
+<script src="index_files/FileSaver.min.js"></script>  <!-- saving files on the client-side -->
+<script src="index_files/jquery.min.js"></script>
+<script src="index_files/popper.min.js"></script>  <!-- tooltip engine -->
+<script src="index_files/bootstrap.min.js"></script>
+<script src="index_files/toastify.min.js"></script> <!-- toast -->
+<script src="index_files/bs-custom-file-input.min.js"></script> <!-- bootstrap custom file input-->
+<script src="index_files/purify.min.js"></script>  <!-- XSS sanitizer -->
+<script src="index_files/bootstrap-select.min.js"></script>
+<script>
+    if (window.navigator.userAgent.indexOf('MSIE ') !== -1 || window.navigator.userAgent.indexOf('Trident/') !== -1)
+        $('#output-container').html('<div class="alert alert-danger" role="alert"> Sorry, this website does not support IE browser. ☹ </div>');
+</script>
+<script src="index_files/pywebio.min.js"></script>
+
+
+<script src="index_files/require.min.js"></script> <!-- JS module loader -->
+
+<script>
+    if (window.WebIO === undefined) { // resource load failed
+        let url = new URL(window.location.href);
+        if (url.searchParams.get('_pywebio_cdn') === 'false') {
+            alert("Failed to load resource")
+        } else {
+            url.searchParams.set('_pywebio_cdn', 'false');
+            window.location.href = url.href;
+        }
+    }
+
+    require.config({
+        paths: {
+            'plotly': "https://cdn.plot.ly/plotly-2.12.1.min",
+            "ag-grid": "https://unpkg.com/ag-grid-community@28.2.0/dist/ag-grid-community.min",
+            "ag-grid-enterprise": "https://unpkg.com/ag-grid-enterprise@28.2.0/dist/ag-grid-enterprise.min",
+        },
+    });
+
+
+    $(function () {
+        // https://www.npmjs.com/package/bs-custom-file-input
+        bsCustomFileInput.init()
+    });
+
+    const urlparams = new URLSearchParams(window.location.search);
+    WebIO.startWebIOClient({
+        output_container_elem: $('#markdown-body'),
+        input_container_elem: $('#input-cards'),
+        backend_address: urlparams.get('pywebio_api') || '',
+        app_name: urlparams.get('app') || 'index',
+        protocol: "ws",
+        runtime_config: {
+            debug: urlparams.get('_pywebio_debug'),
+            outputAnimation: !urlparams.get('_pywebio_disable_animate'),
+            httpPullInterval: parseInt(urlparams.get('_pywebio_http_pull_interval') || 1000)
+        },
+    });
+</script>
+
+
+
+<footer class="footer">
+    Powered by <a href="https://www.pyweb.io/" target="_blank">PyWebIO</a>
+</footer>
+
+</body></html>
