@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>بروفايل الباحث</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- إضافة Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    body {
+  margin: 0;
+  font-family: 'Cairo', sans-serif;
+  background: linear-gradient(-45deg, #2193b0, #6dd5ed, #753a88 , #d8b4f8);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+  color: #222;
+}
+
+/* الحركة */
+@keyframes gradientBG {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+    .profile-wrapper {
+      display: flex;
+      justify-content: center;
+      padding: 30px;
+    }
+
+    .profile-main {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      max-width: 1400px;
+      background: linear-gradient(to bottom right, rgba(173, 216, 230, 0.3), rgba(221, 160, 221, 0.3));
+
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+
+    .left-column, .right-column {
+      flex: 1;
+      padding: 30px;
+    }
+
+    .section {
+      margin-bottom: 30px;
+    }
+
+    .section h3 {
+      border-bottom: 2px solid #004080;
+      padding-bottom: 5px;
+      color: #004080;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section h3 i {
+      color: #004080;
+      font-size: 18px;
+    }
+
+    .photo-container {
+      text-align: center;
+    }
+
+    .photo-container img {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 15px;
+      border: 4px solid #004080;
+    }
+
+    .photo-container h2 {
+      color: #004080;
+    }
+
+    ul {
+      padding-right: 20px;
+    }
+
+    ul li {
+      margin-bottom: 8px;
+    }
+
+    .info-box {
+      background-color: #eef2f7;
+      padding: 15px;
+      border-radius: 8px;
+    }
+
+    .info-item {
+      margin-bottom: 10px;
+    }
+
+    .info-item span {
+      font-weight: bold;
+      color: #004080;
+    }
+
+    .metrics {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-top: 15px;
+    }
+
+    .metric-group {
+      flex: 1;
+      min-width: 200px;
+      background-color: #eef2f7;
+      padding: 15px;
+      border-radius: 8px;
+      border-right: 4px solid #004080;
+    }
+
+    .metric-group h4 {
+      margin-top: 0;
+      color: #004080;
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+
+    .metric {
+      font-size: 15px;
+      margin-bottom: 8px;
+      color: #333;
+    }
+
+    .metric span {
+      color: #004080;
+      font-weight: bold;
+      margin-left: 5px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+
+    table, th, td {
+      border: 1px solid #ccc;
+      text-align: center;
+      padding: 8px;
+    }
+
+    th {
+      background-color: #004080;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+<div class="profile-wrapper">
+  <div class="profile-main">
+
+    <!-- العمود الأيسر -->
+    <div class="left-column">
+      <div class="section">
+        <h3><i class="fas fa-id-card"></i> السيرة الذاتية</h3>
+        <p id="bio"></p>
+      </div>
+
+      <div class="section">
+        <h3><i class="fas fa-award"></i> الإنجازات العلمية للباحث</h3>
+        <div class="metrics">
+          <div class="metric-group">
+            <h4>عدد البحوث</h4>
+            <div class="metric"><span>Google Scholar:</span> <strong id="gs-publications">--</strong></div>
+            <div class="metric"><span>Scopus:</span> <strong id="scopus-publications">--</strong></div>
+          </div>
+          <div class="metric-group">
+            <h4>عدد الاستشهادات</h4>
+            <div class="metric"><span>Google Scholar:</span> <strong id="gs-citations">--</strong></div>
+            <div class="metric"><span>Scopus:</span> <strong id="scopus-citations">--</strong></div>
+          </div>
+          <div class="metric-group">
+            <h4>H-Index</h4>
+            <div class="metric"><span>Google Scholar:</span> <strong id="gs-hindex">--</strong></div>
+            <div class="metric"><span>Scopus:</span> <strong id="scopus-hindex">--</strong></div>
+          </div>
+        </div>
+        <ul id="achievements" style="margin-top: 20px;"></ul>
+      </div>
+
+      <div class="section">
+        <h3><i class="fas fa-book"></i> البحوث (Google Scholar)</h3>
+        <a id="googleScholar" href="research.html" target="_blank">عرض البحوث</a>
+      </div>
+    </div>
+
+    <!-- العمود الأيمن -->
+    <div class="right-column">
+      <div class="photo-container">
+        <img id="researcherPhoto" src="" alt="صورة الباحث" />
+        <h2 id="researcherName"></h2>
+      </div>
+
+      <div class="section">
+        <h3><i class="fas fa-address-card"></i> المعلومات الشخصية</h3>
+        <div class="info-box" id="personalInfo"></div>
+      </div>
+
+      
+
+      <div class="section">
+        <h3><i class="fas fa-graduation-cap"></i> التعليم</h3>
+        <table id="educationTable">
+          <thead>
+            <tr>
+              <th>الشهادة</th>
+              <th>اسم الجامعة</th>
+              <th>اسم الكلية</th>
+              <th>البلد</th>
+              <th>تاريخ الحصول عليه</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
+      <div class="section">
+        <h3><i class="fas fa-certificate"></i> شهادات اخرى</h3>
+        <table id="educationTable1">
+          <thead>
+            <tr>
+              <th>الشهادة</th>
+              <th>تاريخ الحصول عليها</th>
+              <th>الوصف</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
+      <div class="section">
+        <h3><i class="fas fa-user-graduate"></i> الألقاب العلمية</h3>
+        <table id="titlesTable">
+          <thead>
+            <tr>
+              <th>اللقب العلمي</th>
+              <th>تاريخ الحصول عليه</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
+      <div class="section">
+        <h3><i class="fas fa-chalkboard-teacher"></i> الاشراف على الطلبة</h3>
+        <table id="educationTable2">
+          <thead>
+            <tr>
+              <th>الاسم</th>
+              <th>التاريخ</th>
+              <th>الوصف</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
+      <div class="section">
+        <h3><i class="fas fa-briefcase"></i> المناصب الادارية</h3>
+        <table id="educationTable3">
+          <thead>
+            <tr>
+              <th>الاسم</th>
+              <th>التاريخ</th>
+              <th>الوصف</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
+      <div class="section">
+        <h3><i class="fas fa-trophy"></i> الجوائز والتكريمات</h3>
+        <table id="educationTable4">
+          <thead>
+            <tr>
+              <th>الاسم</th>
+              <th>الوصف</th>
+              <th>التاريخ</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
+      <div class="section">
+        <h3><i class="fas fa-laptop-code"></i> مهارات استخدام البرمجيات العلمية</h3>
+        <p id="positions"></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="researchers.js"></script>
+<script>
+  window.onload = function () {
+    const name = localStorage.getItem("selectedResearcher");
+    if (name && researchers[name]) {
+      const r = researchers[name];
+      document.getElementById("researcherName").innerText = r.name;
+      document.getElementById("researcherPhoto").src = r.photo;
+      document.getElementById("bio").innerText = r.bio;
+      document.getElementById("googleScholar").href = r.googleScholar;
+      document.getElementById("achievements").innerHTML = r.achievements.map(a => `<li>${a}</li>`).join("");
+      document.getElementById("positions").innerText = r.positions;
+
+      if (r.personalInfo) {
+        const p = r.personalInfo;
+        document.getElementById("personalInfo").innerHTML = `
+          <div class="info-item"><span>الاسم بالعربية:</span> ${p.nameAr}</div>
+          <div class="info-item"><span>الاسم بالإنجليزية:</span> ${p.nameEn}</div>
+          <div class="info-item"><span>تاريخ التولد:</span> ${p.birthdate}</div>
+          <div class="info-item"><span>اللقب العلمي:</span> ${p.title}</div>
+          <div class="info-item"><span>الشهادة:</span> ${p.degree}</div>
+          <div class="info-item"><span>الاختصاص العام:</span> ${p.major}</div>
+          <div class="info-item"><span>الاختصاص الدقيق:</span> ${p.specialization}</div>
+          <div class="info-item"><span>البريد الإلكتروني:</span> <a href="mailto:${p.email}">${p.email}</a></div>
+        `;
+      }
+
+      if (r.metrics) {
+        document.getElementById("gs-publications").innerText = r.metrics.gs.publications;
+        document.getElementById("scopus-publications").innerText = r.metrics.scopus.publications;
+        document.getElementById("gs-citations").innerText = r.metrics.gs.citations;
+        document.getElementById("scopus-citations").innerText = r.metrics.scopus.citations;
+        document.getElementById("gs-hindex").innerText = r.metrics.gs.hindex;
+        document.getElementById("scopus-hindex").innerText = r.metrics.scopus.hindex;
+      }
+
+      // التعليم
+      if (Array.isArray(r.educationDetails)) {
+        const tbody = document.querySelector("#educationTable tbody");
+        r.educationDetails.forEach(e => {
+          tbody.innerHTML += `
+            <tr>
+              <td>${e.degree}</td>
+              <td>${e.university}</td>
+              <td>${e.college}</td>
+              <td>${e.country}</td>
+              <td>${e.date}</td>
+            </tr>`;
+        });
+      }
+
+      // شهادات اخرى
+      if (Array.isArray(r.educationDetails1)) {
+        const tbody = document.querySelector("#educationTable1 tbody");
+        r.educationDetails1.forEach(e => {
+          tbody.innerHTML += `
+            <tr>
+              <td>${e.degree}</td>
+              <td>${e.date}</td>
+              <td>${e.other}</td>
+            </tr>`;
+        });
+      }
+
+      // الاشراف على الطلبة
+      if (Array.isArray(r.educationDetails2)) {
+        const tbody = document.querySelector("#educationTable2 tbody");
+        r.educationDetails2.forEach(e => {
+          tbody.innerHTML += `
+            <tr>
+              <td>${e.name}</td>
+              <td>${e.date}</td>
+              <td>${e.other}</td>
+            </tr>`;
+        });
+      }
+
+      // المناصب الادارية
+      if (Array.isArray(r.educationDetails3)) {
+        const tbody = document.querySelector("#educationTable3 tbody");
+        r.educationDetails3.forEach(e => {
+          tbody.innerHTML += `
+            <tr>
+              <td>${e.name}</td>
+              <td>${e.date}</td>
+              <td>${e.other}</td>
+            </tr>`;
+        });
+      }
+
+      // الجوائز والتكريمات
+      if (Array.isArray(r.educationDetails4)) {
+        const tbody = document.querySelector("#educationTable4 tbody");
+        r.educationDetails4.forEach(e => {
+          tbody.innerHTML += `
+            <tr>
+              <td>${e.name}</td>
+              <td>${e.other}</td>
+              <td>${e.date}</td>
+            </tr>`;
+        });
+      }
+
+      // الألقاب العلمية
+      if (Array.isArray(r.titlesDetails)) {
+        const tbody = document.querySelector("#titlesTable tbody");
+        r.titlesDetails.forEach(t => {
+          tbody.innerHTML += `
+            <tr>
+              <td>${t.title}</td>
+              <td>${t.date}</td>
+            </tr>`;
+        });
+      }
+    }
+  }
+</script>
+
+</body>
+</html>

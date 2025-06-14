@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>بحوث الباحث</title>
+  <link rel="stylesheet" href="style.css"> <!-- نفس ملف CSS المستخدم في البروفايل -->
+  <style>
+    body {
+      font-family: 'Cairo', sans-serif;
+      margin: 20px;
+      background-color: #f5f5f5;
+    }
+
+    h1 {
+      color: #333;
+      text-align: center;
+    }
+
+    .research-list {
+      max-width: 900px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .research-item {
+      margin-bottom: 15px;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 10px;
+    }
+
+    .research-item a {
+      color: #007bff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .research-item a:hover {
+      text-decoration: underline;
+    }
+
+    .no-research {
+      text-align: center;
+      color: red;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>بحوث الباحث</h1>
+
+  <div class="research-list" id="researchContainer">
+    <!-- سيتم ملء البحوث هنا -->
+  </div>
+
+  <script>
+    // ✅ جميع البحوث بدون روابط، فقط عنوان ومجلة
+    const allResearches = {
+      "شفيق شاكر شفيق": [
+        {
+          title: "Data driven insights for parabolic trough solar collectors: Artificial intelligence-based energy and exergy performance analysis",
+          journal: "Journal of Cleaner Production, 141069, 2024"
+        },
+        {
+          title: "Optimization of hybrid PV/T systems",
+          journal: "Energy Reports, Vol 10, 2023"
+        }
+      ],
+      "سارةاحمد": [
+        {
+          title: "تحسين أداء الأنظمة الحرارية الشمسية",
+          journal: "مجلة الطاقة النظيفة، 2022"
+        }
+      ]
+    };
+
+    // ✅ توليد رابط البحث في Google Scholar
+    function generateScholarLink(title) {
+      const query = encodeURIComponent(title);
+      return `https://scholar.google.com/scholar?q=${query}`;
+    }
+
+    const researcherName = localStorage.getItem("selectedResearcher");
+    const container = document.getElementById("researchContainer");
+
+    if (researcherName && allResearches[researcherName]) {
+      const papers = allResearches[researcherName];
+      papers.forEach(paper => {
+        const div = document.createElement("div");
+        div.className = "research-item";
+        const link = generateScholarLink(paper.title);
+        div.innerHTML = `
+          <a href="${link}" target="_blank">${paper.title}</a>
+          <div>${paper.journal}</div>
+        `;
+        container.appendChild(div);
+      });
+    } else {
+      container.innerHTML = `<p class="no-research">لم يتم العثور على بحوث لهذا الباحث.</p>`;
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,192 @@
+/* الخط العام للجسم */
+body {
+  font-family: 'Cairo', sans-serif;
+  margin: 0;
+  padding: 0;
+  direction: rtl;
+  background-color: #f0f6ff;
+  color: #222;
+  line-height: 1.6;
+}
+
+/* الحاوية الرئيسية */
+.profile-wrapper {
+  padding: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+/* قسم المحتوى الرئيسي */
+.profile-main {
+  display: flex;
+  gap: 30px;
+  justify-content: space-between;
+  align-items: flex-start;
+  max-width: 1400px;
+  width: 100%;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  padding: 30px;
+  flex-wrap: wrap;
+}
+
+/* الأعمدة */
+.left-column, .right-column {
+  flex: 1;
+  min-width: 300px;
+}
+
+.left-column {
+  order: 2;
+}
+
+.right-column {
+  order: 1;
+  text-align: center;
+}
+
+/* صورة الباحث */
+.photo-container {
+  margin-bottom: 20px;
+}
+
+img#researcherPhoto {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 5px solid #0051a3;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  margin-bottom: 10px;
+  transition: transform 0.3s ease;
+}
+
+img#researcherPhoto:hover {
+  transform: scale(1.05);
+}
+
+/* عنوان الباحث */
+h2 {
+  color: #002e6d;
+  font-size: 26px;
+  margin-bottom: 15px;
+}
+
+/* أقسام المحتوى */
+.section {
+  background-color: #e8f0ff;
+  padding: 18px;
+  margin-bottom: 25px;
+  border-radius: 10px;
+  border-right: 6px solid #0051a3;
+  text-align: right;
+}
+
+.section h3 {
+  margin: 0 0 12px;
+  color: #003d99;
+  font-size: 20px;
+  border-bottom: 1px solid #cce0ff;
+  padding-bottom: 6px;
+}
+
+.section ul {
+  margin: 0;
+  padding-right: 25px;
+  list-style: disc;
+}
+
+/* الروابط */
+a {
+  color: #0044cc;
+  font-weight: bold;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: #002266;
+}
+
+/* معلومات شخصية */
+.info-box {
+  background-color: #f9fbff;
+  padding: 18px;
+  border-radius: 10px;
+  border: 1px solid #d0e2ff;
+  text-align: right;
+}
+
+.info-item {
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.info-item span {
+  font-weight: bold;
+  color: #004080;
+}
+
+/* مؤشرات الباحث */
+.metrics-box {
+  background-color: #f1f7ff;
+  padding: 18px;
+  border-radius: 10px;
+  border: 1px solid #cce0ff;
+  margin-top: 15px;
+}
+
+.metrics-title {
+  font-size: 17px;
+  font-weight: bold;
+  color: #003366;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #d9e8ff;
+  padding-bottom: 5px;
+}
+
+.metric-item {
+  font-size: 15px;
+  margin-bottom: 8px;
+}
+
+.metric-item span {
+  font-weight: bold;
+  color: #002b5c;
+}
+
+/* التجاوب مع الشاشات الصغيرة */
+@media (max-width: 768px) {
+  .profile-main {
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .left-column, .right-column {
+    order: unset;
+    width: 100%;
+  }
+
+  .photo-container img {
+    width: 130px;
+    height: 130px;
+  }
+
+  h2 {
+    font-size: 22px;
+  }
+
+  .section {
+    padding: 14px;
+  }
+
+  .info-item {
+    font-size: 14px;
+  }
+
+  .metric-item {
+    font-size: 13px;
+  }
+}

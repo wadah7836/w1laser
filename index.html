@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>منصة الباحث - البحث</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: 'Cairo', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #a1c4fd, #c2e9fb, #fbc2eb, #fce38a);
+      background-size: 400% 400%;
+      animation: gradientMove 15s ease infinite;
+      color: #222;
+    }
+
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .header-title {
+      text-align: center;
+      margin-top: 60px;
+      text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
+    }
+
+    .header-title h1 {
+      font-size: 80px;
+      margin-bottom: 15px;
+      color: #7b2ff7;
+      font-weight: bold;
+    }
+
+    .header-title h2 {
+      font-size: 36px;
+      color: #ff4ecd;
+      font-weight: 600;
+      margin-top: 0;
+    }
+
+    .search-container {
+      display: flex;
+      justify-content: center;
+      margin: 30px auto;
+    }
+
+    #searchInput {
+      padding: 12px;
+      font-size: 16px;
+      width: 300px;
+      border: 1px solid #ccc;
+      border-radius: 8px 0 0 8px;
+      outline: none;
+    }
+
+    #searchButton {
+      background-color: #00bfff;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      font-size: 16px;
+      border-radius: 0 8px 8px 0;
+      cursor: pointer;
+    }
+
+    #searchButton:hover {
+      background-color: #007acc;
+    }
+
+    #suggestions {
+      text-align: center;
+      color: white;
+      margin-top: 10px;
+    }
+
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .card {
+      background-color: rgba(255, 255, 255, 0.95);
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      width: 220px;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.3s;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    }
+
+    .card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+    }
+
+    .card h3 {
+      margin: 10px;
+      font-size: 18px;
+      color: #007acc;
+      text-shadow: 1px 1px 2px #ccc;
+    }
+
+    #message {
+      text-align: center;
+      color: yellow;
+      font-weight: bold;
+      margin-top: 10px;
+      text-shadow: 1px 1px 2px #000;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- العنوان الرئيسي -->
+  <div class="header-title">
+    <h1>هيئة البحث العلمي</h1>
+    <h2>منصة الباحث</h2>
+  </div>
+
+  <!-- مربع البحث -->
+  <div class="search-container">
+    <input type="text" id="searchInput" placeholder="ابحث عن اسم الباحث...">
+    <button id="searchButton" onclick="searchResearcher()">بحث</button>
+  </div>
+
+  <div id="suggestions"></div>
+  <p id="message"></p>
+
+  <!-- بطاقات الباحثين -->
+  <div class="cards" id="researcherCards"></div>
+
+  <!-- جافا سكريبت -->
+  <script src="researchers.js"></script>
+  <script>
+    function normalizeName(name) {
+      return name.trim().replace(/\s+/g, '').toLowerCase();
+    }
+
+    function searchResearcher() {
+      const input = document.getElementById("searchInput").value;
+      const normalized = normalizeName(input);
+      const keys = Object.keys(researchers);
+
+      const match = keys.find(k => normalizeName(k) === normalized);
+
+      if (match) {
+        localStorage.setItem("selectedResearcher", match);
+        window.location.href = "profile.html";
+      } else {
+        document.getElementById("message").textContent = "لم يتم العثور على الباحث.";
+      }
+    }
+
+    document.getElementById("searchInput").addEventListener("keypress", function(e) {
+      if (e.key === "Enter") {
+        searchResearcher();
+      }
+    });
+
+    document.getElementById("searchInput").addEventListener("input", function() {
+      const value = this.value.toLowerCase();
+      const suggestionBox = document.getElementById("suggestions");
+      suggestionBox.innerHTML = "";
+
+      if (value.length === 0) return;
+
+      const matches = Object.keys(researchers).filter(name =>
+        name.toLowerCase().includes(value)
+      );
+
+      matches.forEach(name => {
+        const div = document.createElement("div");
+        div.textContent = name;
+        div.style.cursor = "pointer";
+        div.style.padding = "5px";
+        div.onclick = () => {
+          document.getElementById("searchInput").value = name;
+          suggestionBox.innerHTML = "";
+        };
+        suggestionBox.appendChild(div);
+      });
+    });
+
+    const container = document.getElementById("researcherCards");
+    Object.entries(researchers).forEach(([key, researcher]) => {
+      const card = document.createElement("div");
+      card.className = "card";
+      card.innerHTML = `
+        <img src="${researcher.photo}" alt="${researcher.name}">
+        <h3>${researcher.name}</h3>
+      `;
+      card.onclick = () => {
+        localStorage.setItem("selectedResearcher", key);
+        window.location.href = "profile.html";
+      };
+      container.appendChild(card);
+    });
+  </script>
+
+</body>
+</html>
